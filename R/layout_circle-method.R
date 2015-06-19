@@ -22,7 +22,7 @@ setMethod("layout_circle",  "GRanges",
                           link.fun = function(x, y, n = 30) bezier(x, y, evaluation = n),
                    rect.inter.n = 60, rank,  ylim = NULL, 
                    scale.n = 60, scale.unit = NULL, scale.type = c("M", "B", "sci"),
-                   grid.n = 5, grid.background = "gray70", grid.line = "white",
+                   grid.n = 5, grid.background = "gray70", grid.line = "white", grid.size = 1
                    grid = FALSE,
                    chr.weight = NULL){
   message("layout_circle() is now a lower level component to transform a
@@ -67,7 +67,8 @@ setMethod("layout_circle",  "GRanges",
     args.aes$x <- as.name(".circle.x")
     args.aes$group <- as.name(".biovizBase.group")    
     aes <- do.call("aes", args.aes)
-    args.non$color <- grid.line  
+    args.non$color <- grid.line
+    args.non$size <- grid.size
     args.tot <- c(list(data = df), list(aes), args.non)
     res <- do.call(geom_path, args.tot)
     p <- c(p ,list(res))
